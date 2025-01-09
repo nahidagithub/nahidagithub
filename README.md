@@ -1,9 +1,9 @@
-## Hi there 👋
+## API Testing  👋
 
 
 **nahidagithub/nahidagithub** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-Rest Booking API Testing with Postman Newman
+##Rest Booking API Testing with Postman Newman
 This project demonstrates API testing using Postman, providing a collection of tests to validate
 various endpoints of the API.
 Features
@@ -52,6 +52,8 @@ o Detailed test results can be viewed for each request.
 7. Request URL: https://restful-booker.herokuapp.com/booking/
 Request Method: POST
 Pre-request Script:
+
+
 var firstName=pm.variables.replaceIn("{{$randomFirstName}}")
 console.log(firstName)
 pm.environment.set("Firstname",firstName)
@@ -171,6 +173,7 @@ Response Body:
 Request URL: https://restful-booker.herokuapp.com/booking/bookingid
 Request Method: DELETE
 Response Body: None
+
 Run Command:
 • Run Command for Console:
 newman run 28_Batch.postman_collection.json -e 28-
@@ -179,5 +182,7 @@ Batch.postman_environment.json
 newman run 28_Batch.postman_collection.json -e 28-
 Batch.postman_environment.json -r cli,htmlextra
 Newman Report Summary:
+![image](https://github.com/user-attachments/assets/abed20a8-a07b-4aeb-a790-74f63594e6bd)
+
 
 
