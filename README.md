@@ -3,7 +3,7 @@
 
 **nahidagithub/nahidagithub** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-##Rest Booking API Testing with Postman Newman
+Rest Booking API Testing with Postman Newman
 This project demonstrates API testing using Postman, providing a collection of tests to validate
 various endpoints of the API.
 Features
@@ -14,14 +14,18 @@ Features
 • Test scripts for assertions and validations
 API Documentation:
 https://documenter.getpostman.com/view/38968395/2sAYBUDCWC
-Technology used:
+
+##Technology used:
+
 • Postman
 • Newman
-Prerequisite:
+##Prerequisite:
+
 • Node Js
 • Newman
 • Newman Html Report Library
-Installation
+##Installation
+
 1. Postman: If you haven't already, https://www.postman.com/downloads/
 2. Import the Postman collection:
 1. Open Postman.
