@@ -1,192 +1,186 @@
-## API Testing  👋
+# API-Testing
+## 🚀 Students_details API Testing Collection
+
+# Table of Contents
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+- [Assertions Details](#assertions-details)
+  - [Create A Student](#create-a-student)
+  - [TokenGenerate](#tokengenerate)
+  - [Authorized](#authorized)
+  - [Student info Validation](#student-info-validation)
+  - [Technical_Skills Add](#technical-skills-add)
+  - [Student Final Information](#student-final-information)
+  - [Summary](#summary)
+
+# Introduction<a name="introduction"></a>
+This document explains how to run an API test with Postman against a Swagger UI site.
+
+# Requirements<a name="requirements"></a>
+...
+- **Java**: [Download](https://www.oracle.com/java/technologies/downloads/)
+- **Postman**: [Download](https://www.postman.com/)
+- **Node JS**: [Download](https://nodejs.org/en)
+# Assertions Details<a name="assertions-details"></a>
+
+## Create A Student<a name="create-a-student"></a>
+...
+```bash
+// set Student FirstName
+var first_name=pm.environment.replaceIn("{{$randomFirstName}}")
+pm.environment.set("Student_fname",first_name)
+// set Student MidtName
+var middle_name=pm.environment.replaceIn("{{$randomNamePrefix}}")
+pm.environment.set("Student_Mname",middle_name)
+// set Student LAstName
+var last_name=pm.environment.replaceIn("{{$randomLastName}}")
+pm.environment.set("Student_lname",last_name)
+
+// set Student Student_House_No
+var House_Number=pm.environment.replaceIn("{{$randomStreetAddress}}")
+pm.environment.set("Student_House_No",House_Number)
+
+set Student Student_City_Name
+var City=pm.environment.replaceIn("{{$randomCity}}")
+pm.environment.set("Student_City_Name",City)
+
+set Student Student_Country_Name
+var Country=pm.environment.replaceIn("{{$randomCountry}}")
+pm.environment.set("Student_Country_Name",Country)
+
+var Mobile=pm.environment.replaceIn("{{$randomPhoneNumber}}")
+pm.environment.set("Student_Mobile_Number",Mobile)
 
 
-**nahidagithub/nahidagithub** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+var CurrentAddress=pm.environment.replaceIn("{{$randomStreetAddress}}")
+pm.environment.set("Student_Current_Address",CurrentAddress)
 
-Rest Booking API Testing with Postman Newman
-This project demonstrates API testing using Postman, providing a collection of tests to validate
-various endpoints of the API.
-Features
-• Tests for GET, POST, PUT, DELETE requests
-• Collection of tests covering different API endpoints
-• Environment setup for easy switching between environments
-• Pre-request scripts for data setup
-• Test scripts for assertions and validations
-API Documentation:
-https://documenter.getpostman.com/view/38968395/2sAYBUDCWC
-
-##Technology used:
-
-• Postman
-• Newman
-##Prerequisite:
-
-• Node Js
-• Newman
-• Newman Html Report Library
-##Installation
-
-1. Postman: If you haven't already, https://www.postman.com/downloads/
-2. Import the Postman collection:
-1. Open Postman.
-2. Click on the Import button.
-3. Select the file from the repository.
-3. Import the Postman environment:
-1. In Postman, click on the gear icon in the top right corner.
-2. Select Import and choose the file.
-4. Newman and Report Installation Process:
-1. Newman Install Command: npm install -g newman
-5. Newman Html Report Install Command:
-1. npm install -g newman-reporter-htmlextra
- Usage
-1. Select Environment:
-o In Postman, select the appropriate environment (e.g., Development, Production) from
-the top-right dropdown.
-2. Run Collection:
-o Select the imported collection from the Collections sidebar.
-o Click on the Runner button to open the collection runner.
-o Select the desired environment.
-o Click Start Test to run the collection.
-3. View Results:
-o Once the tests are complete, view the results in the Runner tab.
-o Detailed test results can be viewed for each request.
-4. Testing
-5. Test Case Scenarios:
-6. 1. Create New Booking
-7. Request URL: https://restful-booker.herokuapp.com/booking/
-Request Method: POST
-Pre-request Script:
-
-
-var firstName=pm.variables.replaceIn("{{$randomFirstName}}")
-console.log(firstName)
-pm.environment.set("Firstname",firstName)
-let lastname=pm.variables.replaceIn("{{$randomLastName}}")
-console.log(lastname)
-pm.environment.set("LastName",lastname)
-const moment=require("moment")
+const moment=require ('moment')
 const today=moment()
-var checkIn=today.add(3,'d').format("YYYY-MM-DD")
-pm.environment.set("CheckIn",checkIn)
-var checkOut=today.add(2,'m').format("YYYY-MM-DD")
-pm.environment.set("CheckOut",checkOut)
-let totalPrice=pm.variables.replaceIn("{{$randomInt}}")
-pm.environment.set("TotalPrice",totalPrice)
-var booLean=pm.variables.replaceIn("{{$randomBoolean}}")
-pm.environment.set("BooLean",booLean)
-Request Body:
-{
-"firstname" : "{{Firstname}}",
-"lastname" : "{{LastName}}",
-"totalprice" : {{TotalPrice}},
-"depositpaid" : {{BooLean}},
-"bookingdates" : {
-"checkin" : "{{CheckIn}}",
-"checkout" : "{{CheckOut}}"
-},
-"additionalneeds" : "Breakfast"
-}
-Response Body:
-{
-"bookingid": 5594,
-"booking": {
-"firstname": "Francisco",
-"lastname": "Walter",
-"totalprice": 813,
-"depositpaid": false,
-"bookingdates": {
-"checkin": "2024-12-08",
-"checkout": "2024-12-08"
-},
-"additionalneeds": "Breakfast"
-}
-}
-2. Get Booking Details By ID
-Request URL: https://restful-booker.herokuapp.com/booking/bookingid
-Request Method: GET
-Response Body:
-{
-"firstname": "Francisco",
-"lastname": "Walter",
-"totalprice": 813,
-"depositpaid": false,
-"bookingdates": {
-"checkin": "2024-12-08",
-"checkout": "2024-12-08"
-},
-"additionalneeds": "Breakfast"
-}
-3.Create A Token For Authentication.
-Request URL: https://restful-booker.herokuapp.com/auth
-Request Method: POST
-Pre-request Script: None
-Request Body:
-{
- "username": "admin",
- "password": "password123"
-}
-Response Body:
-{
- "token": "06eb798bf6f2caa"
-}
-4. Update the Booking Details
-Request URL:https://restful-booker.herokuapp.com/booking/bookingid
-Request Method: PUT
-Pre-request Script:
-var firstName=pm.variables.replaceIn("{{$randomFirstName}}")
-console.log(firstName)
-pm.environment.set("updated_Firstname",firstName)
-let lastname=pm.variables.replaceIn("{{$randomLastName}}")
-console.log(lastname)
-pm.environment.set("updated_LastName",lastname)
-const moment=require("moment")
-const today=moment()
-var checkIn=today.add(3,'d').format("YYYY-MM-DD")
-pm.environment.set("updated_CheckIn",checkIn)
-var checkOut=today.add(2,'m').format("YYYY-MM-DD")
-pm.environment.set("updated_CheckOut",checkOut)
-let totalPrice=pm.variables.replaceIn("{{$randomInt}}")
-pm.environment.set("updated_TotalPrice",totalPrice)
-var booLean=pm.variables.replaceIn("{{$randomBoolean}}")
-pm.environment.set("updated_BooLean",booLean)
-Request Body:
-{
-"firstname" : "{{updated_Firstname}}",
-"lastname" : "{{updated_LastName}}",
-"totalprice" : {{updated_TotalPrice}},
-"depositpaid" : {{updated_BooLean}},
-"bookingdates" : {
-"checkin" : "{{updated_CheckIn}}",
-"checkout" : "{{updated_CheckOut}}"
-},
-"additionalneeds" : "Breakfast"
-}
-Response Body:
-{
-"firstname": "Roma",
-"lastname": "Mosciski",
-"totalprice": 159,
-"depositpaid": false,
-"bookingdates": {
-"checkin": "2024-11-27",
-"checkout": "2024-11-27"
-},
-"additionalneeds": "Breakfast"
-}
-5. Delete Booking Record
-Request URL: https://restful-booker.herokuapp.com/booking/bookingid
-Request Method: DELETE
-Response Body: None
+pm.environment.set("Student_DOB",today.format("YYYY-MM-DD"))
+});
+```
+## TokenGenerate<a name="tokengenerate"></a>
+...
+```bash   
+// set environment token
+var jsonData = pm.response.json();
+pm.environment.set("token", jsonData.token);
+```    
 
-Run Command:
-• Run Command for Console:
-newman run 28_Batch.postman_collection.json -e 28-
-Batch.postman_environment.json
-• Run Command for Report:
-newman run 28_Batch.postman_collection.json -e 28-
-Batch.postman_environment.json -r cli,htmlextra
-Newman Report Summary:
-![image](https://github.com/user-attachments/assets/abed20a8-a07b-4aeb-a790-74f63594e6bd)
+## Authorized<a name="authorized"></a>
+...
+#### Authorized  
+```bash
+// Expected status code and response status code same or not
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
+## Student info Validation<a name="student-info-validation"></a>
+...
+```bash
+
+// Expected status code and response status code same or not
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
+## Technical_Skills Add<a name="technical-skills-add"></a>
+
+#### Technical_Skills Add  
+...
+```bash
+// set Student _Technical_Skills 
+ var language1=pm.environment.replaceIn("{{$randomCity}}")
+pm.environment.set("language_1",language1)
+
+var language2=pm.environment.replaceIn("{{$randomStreetName}}")
+pm.environment.set("language_2",language2)
+
+var yearexp=pm.environment.replaceIn("{{$randomInt}}")
+pm.environment.set("YrarExp",yearexp)
+
+var lastused=pm.environment.replaceIn("{{$randomCreditCardMask}}")
+pm.environment.set("Lastused",lastused)
+
+var status=pm.environment.replaceIn("{{$randomBoolean}}")
+pm.environment.set("status",status)
+```
+## Student Final Information<a name="student-final-information"></a>
+...
+```bash
+     var jsondata= pm.response.json()
+     pm.test("Status code is 200 OK", function () {
+     pm.response.to.have.status(200);
+     });
+
+     // Language 1  Value Validation
+     pm.test("Language check 1",function(){
+        pm.expect(jsondata.data.TechnicalDetails[0].language[0]).to.eql(pm.environment.get("language_1"))
+     })
+     //// Language 2  Value Validation
+
+     pm.test("Language check 2",function(){
+        pm.expect(jsondata.data.TechnicalDetails[0].language[1]).to.eql(pm.environment.get("language_2"))
+     })
+
+     //Year of Experience
+     pm.test("Year of Experience check",function(){
+        pm.expect(jsondata.data.TechnicalDetails[0].yearexp).to.eql(pm.environment.get("YrarExp"))
+     })
+
+     // House Number Validation
+     pm.test("House Number Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("23023 Asa Spurs"))
+     })
+
+     
+     // city name validation
+     pm.test("Student's City Name Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("Rolfsonstad"))
+     })
+    
+    // Studenr Country name Validation
+     pm.test("Studenr Country name Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("Sudan"))
+     })
+
+     // Studenr Mobile Number Validation
+     pm.test("Studenr Mobile Number Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("337-995-8976"))
+        })
 
 
+        // Studenr Current Address Validation
+        pm.test( "Studenr Current Address Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("76034 Zemlak Way"))
+        })
 
+#### Delete User   
+...
+```bash
+// Expected status code and response status code same or not
+
+pm.test("Status code is 204", function () {
+    pm.response.to.have.status(204);
+});
+```
+## Summary<a name="summary"></a>
+<img src="https://github.com/Tashfiquzzaman/API-Testing-/blob/78bf08dbda7dcb096d6a50edbb8becd8eb7020f9/Report/Capture.JPG" />
+</p>
+Test Scripts 5 and a Total 20 assertions were done. All of them passed with 0 skipped tests. The number of iterations was 1.
+
+# Create Test Suites   
+
+### Using Newman   
+  Newman is a command-line Collection Runner for Postman. It enables you to run and test a Postman Collection directly from the command line.
+#### Install Command    
+```bash
+npm install -g newman    
+```
+#### Create HTML Report        
+#### Run Command      
+- newman run “Collection Name”.json -e "EnvironmentName".json -r cli,html    
+**or**    
+- newman run “Collection Name” -e “EnvironmentName".json -r cli,htmlextra    
